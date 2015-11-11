@@ -1,10 +1,7 @@
 package com.gamegag.blog;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -19,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-	@Autowired private DAOApprenti apprentiDAO;
+	
+	@Autowired private DAOPost _daopdost;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
@@ -29,11 +28,17 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		List<Apprenti> apprentis = apprentiDAO.findAll();
-		model.addAttribute("apprentis", apprentis);
+		List<Post> post = _daopdost.findAll();
+		model.addAttribute("post", post);
 		
 		return "test/home";
 	}
 	
+
+    @RequestMapping(value="/getAllPosts", method = RequestMethod.GET)
+	@ResponseBody
+    public List<Post> getAllUsers() {
+    		return _daopdost.findAll();
+    }
 	
 }

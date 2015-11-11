@@ -12,6 +12,27 @@
 
 <body>
 	<h1>Hello world!</h1>
-${apprentis[0].firstname}
+	<button type='button' onclick='RestGet()'>GET</button>
+	 <script>
+	 
+	 var RestGet = function() {
+	        $.ajax({
+	        type: 'GET',
+	        url:  '/blog/getAllPosts/',
+	        dataType: 'json',
+	        async: true,
+	        success: function(result) {
+	        	$.each(result, function(index, element) {
+	                $('body').append($('<div>', {
+	                    text: element.name
+	                }));
+	            });
+	        },
+	        error: function(jqXHR, textStatus, errorThrown) {
+	            alert(jqXHR.status + ' ' + jqXHR.responseText);
+	        }
+	   });
+	}
+  	</script>
 </body>
 </html>

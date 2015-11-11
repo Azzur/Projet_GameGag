@@ -27,9 +27,9 @@
 	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/insta2015" />
-		<property name="username" value="mika" />
-		<property name="password" value="mika" />
+		<property name="url" value="jdbc:mysql://localhost:3306/gamegag" />
+		<property name="username" value="root" />
+		<property name="password" value="574400" />
 		<property name="validationQuery" value="SELECT 1" />
 	</bean>
 
